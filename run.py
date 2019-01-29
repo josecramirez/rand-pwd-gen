@@ -17,7 +17,7 @@ def validate_pwd(pwd):
             and any(is_symbol(c) for c in pwd))
 
 def is_symbol(char):
-    return (True if char in string.punctuation else False)
+    return char in string.punctuation
 
 if __name__ == "__main__":
     gen_pwd = ''
