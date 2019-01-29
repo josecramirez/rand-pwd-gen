@@ -10,5 +10,18 @@ def generate_pwd():
 
     return ''.join(choice(selection) for i in range(pwd_len))
 
+def validate_pwd(pwd):
+    if (any(c.isupper() for c in pwd)
+            and any(c.islower() for c in pwd)
+            and any(c.isdigit() for c in pwd)):
+        return True
+
+    return False
+
 if __name__ == "__main__":
-    print(f"Your randomly generated password is: { generate_pwd() }")
+    gen_pwd = ''
+
+    while not validate_pwd(gen_pwd):
+        gen_pwd = generate_pwd()
+
+    print(f"Your password is: { gen_pwd }")
