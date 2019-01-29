@@ -11,13 +11,10 @@ def generate_pwd():
     return ''.join(choice(selection) for i in range(pwd_len))
 
 def validate_pwd(pwd):
-    if (any(c.isupper() for c in pwd)
+    return (any(c.isupper() for c in pwd)
             and any(c.islower() for c in pwd)
             and any(c.isdigit() for c in pwd)
-            and any(is_symbol(c) for c in pwd)):
-        return True
-
-    return False
+            and any(is_symbol(c) for c in pwd))
 
 def is_symbol(char):
     return (True if char in string.punctuation else False)
