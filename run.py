@@ -13,10 +13,14 @@ def generate_pwd():
 def validate_pwd(pwd):
     if (any(c.isupper() for c in pwd)
             and any(c.islower() for c in pwd)
-            and any(c.isdigit() for c in pwd)):
+            and any(c.isdigit() for c in pwd)
+            and any(is_symbol(c) for c in pwd)):
         return True
 
     return False
+
+def is_symbol(char):
+    return (True if char in string.punctuation else False)
 
 if __name__ == "__main__":
     gen_pwd = ''
