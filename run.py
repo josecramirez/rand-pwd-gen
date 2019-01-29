@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 
-import random
+from secrets import choice
+from random import randrange
 import string
 
 def generate_pwd():
-    pwd = ''
-    pwd_len = random.randrange(8, 16)
+    pwd_len = randrange(8, 16)
     selection = string.ascii_letters + string.digits + string.punctuation
 
-    for i in range(pwd_len):
-        pwd += random.choice(selection)
-
-    return pwd
+    return ''.join(choice(selection) for i in range(pwd_len))
 
 if __name__ == "__main__":
     print(f"Your randomly generated password is: { generate_pwd() }")
