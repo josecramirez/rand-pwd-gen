@@ -4,6 +4,14 @@ from secrets import choice
 from random import randrange
 import string
 
+def main():
+    gen_pwd = ""
+    
+    while not validate_pwd(gen_pwd):
+        gen_pwd = generate_pwd()
+        
+    print(f"Your password is: { gen_pwd }")
+
 def generate_pwd():
     pwd_len = randrange(8, 16)
     selection = string.ascii_letters + string.digits + string.punctuation
@@ -20,9 +28,4 @@ def is_symbol(char):
     return char in string.punctuation
 
 if __name__ == "__main__":
-    gen_pwd = ''
-
-    while not validate_pwd(gen_pwd):
-        gen_pwd = generate_pwd()
-
-    print(f"Your password is: { gen_pwd }")
+    main()
