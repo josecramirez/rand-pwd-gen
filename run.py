@@ -3,6 +3,8 @@
 from secrets import choice
 from random import randrange
 import string
+import re
+import hunspell
 
 def main():
     gen_pwd = ""
@@ -22,10 +24,21 @@ def validate_pwd(pwd):
     return (any(c.isupper() for c in pwd)
             and any(c.islower() for c in pwd)
             and any(c.isdigit() for c in pwd)
-            and any(is_symbol(c) for c in pwd))
+            and any(is_symbol(c) for c in pwd)
+            and has_no_words(pwd))
 
 def is_symbol(char):
     return char in string.punctuation
+
+def has_no_words(pwd):
+    hobj = hunspell.HunSpell(
+        '/usr/share/hunspell/en_US.dic',
+        '/usr/share/hunspell/en_US.aff'
+    )
+    word_regex = r"([a-zA-Z]{2,})"
+    results = re.findall(word_regex, pwd)
+    
+    return not any(hobj.spell(w) for w in results)
 
 if __name__ == "__main__":
     main()
