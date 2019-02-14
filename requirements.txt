@@ -1,2 +1,1 @@
 hunspell==0.5.5
-secrets==1.0.2
